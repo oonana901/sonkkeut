@@ -1,0 +1,11 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {parseCSV,storesFromCSV,loadPublishedStores} from '../dist/sheet-feed.js';
+const headers=['매장 ID','매장명','주소','전화번호','점자메뉴판 이용 방법','제공 메뉴 범위','카카오맵 길찾기 URL','네이버지도 길찾기 URL','층수','진입로 턱','진입로 계단','경사로','엘리베이터','한 줄 소개','매장 특징','목록용 지역'];
+const row=['store_test','테스트카페','경기도 군포시 테스트로 1, 101호','031-000-0000','카운터 왼쪽\n테이블','음료/디저트','https://map.kakao.com/link/to/test','https://map.naver.com/test','1층','있음','있음','있음','미확인','브런치 "테스트" 카페','브런치 판매 / 반려동물 동반','경기 군포시 산본동'];
+const csvRow=r=>r.map(v=>'"'+v.replaceAll('"','""')+'"').join(',');
+const feed=rows=>'\uFEFF'+[headers,...rows].map(csvRow).join('\r\n')+'\r\n';
+test('CSV preserves Korean, commas, quotes, multiline text and leading phone zero',()=>{const [s]=storesFromCSV(feed([row])); assert.equal(s.address,row[2]);assert.equal(s.phone,row[3]);assert.equal(s.usage,row[4]);assert.equal(s.intro,row[13]);assert.deepEqual(s.features,['브런치 판매','반려동물 동반']);assert.equal(s.area,'경기 군포시 산본동');assert.equal(s.entry,'진입로 턱·계단·경사로 있음');});
+test('header-only public feed is a valid zero-store state',()=>assert.deepEqual(storesFromCSV(feed([])),[]));
+test('malformed CSV, spreadsheet errors, unknown headers, duplicate IDs fail closed',()=>{assert.throws(()=>parseCSV('"unclosed'));assert.throws(()=>storesFromCSV('<html>Login</html>'));assert.throws(()=>storesFromCSV(feed([row,row])));assert.throws(()=>storesFromCSV(feed([['#REF!']])));});
+test('unconfirmed descriptions are omitted and URL configuration cannot point at an unpublished sheet',async()=>{const copy=[...row];copy[13]='미확인';copy[14]='미확인';const [s]=storesFromCSV(feed([copy]));assert.equal(s.intro,'');assert.deepEqual(s.features,[]);await assert.rejects(loadPublishedStores('https://docs.google.com/spreadsheets/d/private-id/edit'));});

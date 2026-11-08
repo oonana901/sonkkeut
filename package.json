@@ -1,0 +1,15 @@
+{
+  "name": "sonkkeut-menu-source-export",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "점자메뉴판 보유 매장 찾기 — Sites 24번 버전 원본 내보내기",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

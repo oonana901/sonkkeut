@@ -1,0 +1,5 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {REPORT_EMAIL,reportMessage,reportMailURL} from '../dist/report-mail.js';
+test('mailto is addressed only to team and safely encodes Korean and query characters',()=>{const s={id:'store_test',name:'테스트 & 카페 #1'};const body=reportMessage(s,'주소·전화번호·길찾기','  위치가 다름 & 새 주소=1?\n둘째 줄  ');const u=new URL(reportMailURL(s,body));assert.equal(u.protocol,'mailto:');assert.equal(u.pathname,'sonkkeutgp@gmail.com');assert.equal(REPORT_EMAIL,u.pathname);assert.equal(u.searchParams.get('subject'),'[매장 정보 오류 제보] 테스트 & 카페 #1');assert.equal(u.searchParams.get('body'),body);assert.equal(u.searchParams.has('cc'),false);assert.equal(u.searchParams.has('bcc'),false);assert.match(body,/매장 ID: store_test/);});
+test('blank and whitespace-only details or issue cannot produce a report',()=>{const s={id:'store_test',name:'테스트'};assert.throws(()=>reportMessage(s,'기타',''));assert.throws(()=>reportMessage(s,'기타','  \n '));assert.throws(()=>reportMessage(s,'','실제 오류 내용'));});

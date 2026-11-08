@@ -1,0 +1,77 @@
+{
+  "site_version": 24,
+  "project_id": "appgprj_6add7fb4c664819194de32cd9fea0994",
+  "source_commit": "a3eeac0f22e32a0cf1577ee0e5838247d98f463f",
+  "exported_date_kst": "2026-11-08",
+  "original_files": [
+    {
+      "path": ".openai/hosting.json",
+      "sha256": "5717fb25c23a504c794af0cd483eb2be3f383c199c7962b6cb7bf1ebb6fd8634",
+      "bytes": 106
+    },
+    {
+      "path": "README.md",
+      "sha256": "39cf0501536b6b85fa731cc5b83af18e40edf64c4110cd005712a7e713b75bec",
+      "bytes": 3676
+    },
+    {
+      "path": "dist/app.js",
+      "sha256": "4ea99003061278b2284299e310c48828e9b62fb2d4a4762b05b12e8b98faa340",
+      "bytes": 17535
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "9719dd2cbfcc6b21ef422669dd74c3a6848150fec28018b7bde04f5c4256d4fd",
+      "bytes": 1521
+    },
+    {
+      "path": "dist/public-feed.json",
+      "sha256": "c3dbd76d11661e2d84213ef7c3b02327801c2ef7bd42861b44aea15e2a7d011c",
+      "bytes": 180
+    },
+    {
+      "path": "dist/report-mail.js",
+      "sha256": "7435b31778d0ae134e87751b03d3a434fd39ac5d72f0c5e584dd850b71c33d1a",
+      "bytes": 564
+    },
+    {
+      "path": "dist/sheet-feed.js",
+      "sha256": "4cac2cac875c990d223003fda38bf4afc7a5e71314b679d6a2dbfaced73d014e",
+      "bytes": 3381
+    },
+    {
+      "path": "dist/style.css",
+      "sha256": "ddba09b6c1ccbc2f660d19e09af53514b04291230d29ef12dd51c0a74bb9c8da",
+      "bytes": 14356
+    },
+    {
+      "path": "tests/report-mail.test.mjs",
+      "sha256": "c1a43c793314d8cb72144ea281dfc19e61b4cd578a993409bc48e043ae8a5181",
+      "bytes": 1145
+    },
+    {
+      "path": "tests/sheet-feed.test.mjs",
+      "sha256": "475300b01a1f8bc64fb03446ffc8fa27bb5bacf83e604c244629e9c9aa05befe",
+      "bytes": 2184
+    }
+  ],
+  "added_export_files": [
+    {
+      "path": "EXPORT_README.md",
+      "sha256": "e7d809daee261ebad7fdb2a3bcab88b69f182cbebea940e480c07cbc3bfe8b8d"
+    },
+    {
+      "path": "package.json",
+      "sha256": "c2374e5debbbe142e6ea2bef34d91c1a91be65b0bcd00ae4da373b6b3f361dac"
+    },
+    {
+      "path": "scripts/serve.mjs",
+      "sha256": "117b86bbab8a50395cd6e3c7b7c83b61e4942c14896d1dc1c36af02f35b8f854"
+    },
+    {
+      "path": "start-windows.cmd",
+      "sha256": "d9a4dd1e6de69b5f74501004ad7cfa3f36aa1615c3b136ec3de7ef450532ee4e"
+    }
+  ],
+  "note": "Original tracked files are unchanged; additions provide local execution and documentation. This manifest excludes its own checksum."
+}
